@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head>
+<script>(function(){var u=navigator.userAgent;if(/^((?!chrome|chromium|crios|fxios|edg|android).)*safari/i.test(u))document.documentElement.classList.add('is-safari');})();</script>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Pathway · concept demo</title>
@@ -30,7 +32,8 @@ body{background:var(--page);font-family:'Source Sans 3','Source Sans Pro',system
 button{font-family:inherit}
 a{color:var(--blue);text-decoration:none}a:hover{color:#181B76;text-decoration:underline}
 
-@keyframes pwIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes pwIn{0%{opacity:0;transform:translate3d(0,14px,0)}60%{opacity:1;transform:translate3d(0,-2px,0)}100%{opacity:1;transform:translate3d(0,0,0)}}
+@keyframes pwPopIn{0%{opacity:0;transform:translate3d(0,10px,0)}65%{opacity:1;transform:translate3d(0,-3px,0)}100%{opacity:1;transform:translate3d(0,0,0)}}
 @keyframes pwRise{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
 @keyframes pwFadeOut{from{opacity:1}to{opacity:0}}
 @keyframes pwDot{0%,80%,100%{opacity:.25;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
@@ -91,12 +94,23 @@ a{color:var(--blue);text-decoration:none}a:hover{color:#181B76;text-decoration:u
 /* room so card shadows aren't clipped at the scroll edges */
 .d-root .scroll{margin:0 -20px;padding:0 20px}
 .d-root .chat{flex-grow:1;flex-shrink:0;width:760px;max-width:100%;margin:0 auto;display:flex;flex-direction:column;justify-content:flex-end;gap:20px;padding:40px 0 16px}
-.d-root .chat > *{animation:pwIn 420ms cubic-bezier(0.22,1,0.36,1) both}
+.d-root .chat > *{animation:pwIn 660ms cubic-bezier(0.25,0.8,0.3,1) both}
+/* friendlier, calmer chat entrances */
+.d-root .msg-user{transform-origin:100% 100%;animation:pwPopIn 420ms cubic-bezier(0.3,1.25,0.5,1) both!important}
+.d-root .chips > *{animation:pwIn 560ms cubic-bezier(0.25,0.8,0.3,1) both}
+.d-root .chips > *:nth-child(1){animation-delay:0ms}
+.d-root .chips > *:nth-child(2){animation-delay:80ms}
+.d-root .chips > *:nth-child(3){animation-delay:160ms}
+.d-root .chips > *:nth-child(4){animation-delay:240ms}
+.d-root .chips > *:nth-child(5){animation-delay:320ms}
+.d-root .chips > *:nth-child(6){animation-delay:400ms}
+.d-root .thinking{animation:pwIn 420ms cubic-bezier(0.25,0.8,0.3,1) both!important}
+
 .d-root .msg-user{align-self:flex-end;max-width:70%;padding:12px 18px;color:var(--ink);border-radius:18px 18px 4px 18px;font-size:15px;line-height:1.45;background:var(--fill)}
 .d-root .pw{display:flex;flex-direction:column;gap:8px}
 .d-root .pw > p{align-self:flex-start;max-width:100%;margin:0;padding:4px 0;font-size:16px;line-height:1.55;color:var(--ink)}
 .d-root .pw.first > p{padding:12px 0}
-.d-root .pw > p{animation:pwIn 420ms cubic-bezier(0.22,1,0.36,1) both}
+.d-root .pw > p{animation:pwIn 660ms cubic-bezier(0.25,0.8,0.3,1) both}
 .d-root .thinking{align-self:flex-start;display:flex;gap:6px;align-items:center;height:30px}
 .d-root .thinking span{width:8px;height:8px;border-radius:50%;background:var(--navy);animation:pwDot 1.2s ease-in-out infinite}
 .d-root .thinking span:nth-child(2){animation-delay:.15s}.d-root .thinking span:nth-child(3){animation-delay:.3s}
@@ -217,7 +231,8 @@ a{color:var(--blue);text-decoration:none}
 @keyframes pwRise{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
 @keyframes pwBlurIn{from{backdrop-filter:blur(0px);-webkit-backdrop-filter:blur(0px)}to{backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}}
 @keyframes pwBlurOut{from{backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}to{backdrop-filter:blur(0px);-webkit-backdrop-filter:blur(0px)}}
-@keyframes pwIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes pwIn{0%{opacity:0;transform:translate3d(0,14px,0)}60%{opacity:1;transform:translate3d(0,-2px,0)}100%{opacity:1;transform:translate3d(0,0,0)}}
+@keyframes pwPopIn{0%{opacity:0;transform:translate3d(0,10px,0)}65%{opacity:1;transform:translate3d(0,-3px,0)}100%{opacity:1;transform:translate3d(0,0,0)}}
 @keyframes pwDot{0%,80%,100%{opacity:.25;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
 
 /* ---------- stage + device ---------- */
@@ -250,7 +265,18 @@ a{color:var(--blue);text-decoration:none}
 .m-root .scroll::-webkit-scrollbar{display:none}
 .m-root .area{flex-grow:1;flex-shrink:0;display:flex;flex-direction:column;justify-content:flex-end;padding:16px 24px 118px;background:#fff;min-height:100%}
 .m-root .chat{display:flex;flex-direction:column;gap:30px;justify-content:flex-end;align-items:center}
-.m-root .chat > *{animation:pwIn 420ms cubic-bezier(0.22,1,0.36,1) both}
+.m-root .chat > *{animation:pwIn 660ms cubic-bezier(0.25,0.8,0.3,1) both}
+/* friendlier, calmer chat entrances */
+.m-root .msg-user{transform-origin:100% 100%;animation:pwPopIn 420ms cubic-bezier(0.3,1.25,0.5,1) both!important}
+.m-root .chips > *{animation:pwIn 560ms cubic-bezier(0.25,0.8,0.3,1) both}
+.m-root .chips > *:nth-child(1){animation-delay:0ms}
+.m-root .chips > *:nth-child(2){animation-delay:80ms}
+.m-root .chips > *:nth-child(3){animation-delay:160ms}
+.m-root .chips > *:nth-child(4){animation-delay:240ms}
+.m-root .chips > *:nth-child(5){animation-delay:320ms}
+.m-root .chips > *:nth-child(6){animation-delay:400ms}
+.m-root .thinking{animation:pwIn 420ms cubic-bezier(0.25,0.8,0.3,1) both!important}
+
 .m-root .msg-user{align-self:flex-end;max-width:80%;padding:12px 16px;color:var(--ink);border-radius:16px 16px 4px 16px;font-size:18px;line-height:1.45;background:var(--fill)}
 .m-root .msg-pw{margin:0;font-size:20px;line-height:1.4;color:var(--ink);width:100%;font-weight:400}
 .m-root .thinking{align-self:flex-start;display:flex;gap:6px;align-items:center;height:28px}
@@ -597,6 +623,14 @@ a{color:var(--blue);text-decoration:none}
 .m-root .home::-webkit-scrollbar{display:none}
 .m-root .home.gone{opacity:0;visibility:hidden;pointer-events:none;transition:opacity 300ms ease,visibility 0s linear 300ms}
 @media (max-width:500px){.m-root .home{padding-top:0}}
+
+/* smoother animation in Safari */
+.d-root .chat > *,.d-root .chips > *,.d-root .pw > p{will-change:transform,opacity;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+html.is-safari .d-root .frost{background:rgba(255,255,255,.96);backdrop-filter:none;-webkit-backdrop-filter:none}
+
+/* smoother animation in Safari */
+.m-root .chat > *,.m-root .chips > *,.m-root .pw > p{will-change:transform,opacity;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+html.is-safari .m-root .frost{background:rgba(255,255,255,.96);backdrop-filter:none;-webkit-backdrop-filter:none}
 </style>
 </head>
 <body>
@@ -1276,22 +1310,51 @@ const later = (fn, ms) => { const t = setTimeout(fn, ms); timers.push(t); return
 /* ---------- helpers ---------- */
 const el = (html) => { const t = document.createElement('template'); t.innerHTML = html.trim(); return t.content.firstElementChild; };
 const esc = (s) => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function toBottom(){ const b = S && S.instant ? 'auto' : 'smooth'; requestAnimationFrame(() => scroll.scrollTo({ top: scroll.scrollHeight, behavior: b })); }
+let pwScrollRaf = 0;
+/* our own eased scroll to the newest message, so it runs in step with the entrance animations (smoother in Safari) */
+function toBottom(){
+  if (S && S.instant) { requestAnimationFrame(() => { scroll.scrollTop = scroll.scrollHeight; }); return; }
+  cancelAnimationFrame(pwScrollRaf);
+  requestAnimationFrame(() => {
+    const from = scroll.scrollTop, t0 = performance.now(), dur = 560;
+    const step = (t) => {
+      const to = scroll.scrollHeight - scroll.clientHeight, k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+      scroll.scrollTop = from + (to - from) * e;
+      if (k < 1) pwScrollRaf = requestAnimationFrame(step);
+    };
+    pwScrollRaf = requestAnimationFrame(step);
+  });
+}
 function add(node){ chat.appendChild(node); toBottom(); return node; }
 function userSays(html){ add(el(`<div class="msg-user">${html}</div>`)); }
 function removeChips(){ chat.querySelectorAll('.chips,.hhrow').forEach(n => { n.classList.add('leaving'); setTimeout(() => n.remove(), 200); }); }
 
+function pwDelays(items){
+  /* time to "read" each line before the next appears, so replies feel considered */
+  const ds = []; let t = 0;
+  items.forEach((it, i) => {
+    ds.push(t);
+    const len = typeof it === 'string' ? it.replace(/<[^>]+>/g, '').length : 0;
+    t += typeof it === 'string' ? Math.min(1300, 560 + len * 8) : 420;
+  });
+  return ds;
+}
+function pwThink(items){
+  const chars = items.reduce((n, it) => n + (typeof it === 'string' ? it.replace(/<[^>]+>/g, '').length : 40), 0);
+  return 1100 + Math.min(600, chars * 3) + Math.random() * 300;
+}
 function pathwaySays(items, then){
   if (S.instant) { items.forEach(it => add(typeof it === 'string' ? el(`<p class="msg-pw">${it}</p>`) : it())); S.busy = false; then && then(); return; }
   S.busy = true;
   const think = add(el('<div class="thinking" role="status" aria-label="Pathway is thinking"><span></span><span></span><span></span></div>'));
   later(() => {
     think.remove();
+    const DS = pwDelays(items);
     items.forEach((it, i) => later(() => {
       add(typeof it === 'string' ? el(`<p class="msg-pw">${it}</p>`) : it());
       if (i === items.length - 1) { S.busy = false; then && then(); }
-    }, i * 420));
-  }, 1000 + Math.random() * 300);
+    }, DS[i]));
+  }, pwThink(items));
 }
 
 /* An answer is logged: move the timeline on and play the P */
@@ -1760,12 +1823,40 @@ let S, timers = [];
 const later = (fn, ms) => { const t = setTimeout(fn, ms); timers.push(t); return t; };
 const el = (html) => { const t = document.createElement('template'); t.innerHTML = html.trim(); return t.content.firstElementChild; };
 const esc = (s) => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function toBottom(){ const b = S && S.instant ? 'auto' : 'smooth'; requestAnimationFrame(() => scroll.scrollTo({ top: scroll.scrollHeight, behavior: b })); }
+let pwScrollRaf = 0;
+/* our own eased scroll to the newest message, so it runs in step with the entrance animations (smoother in Safari) */
+function toBottom(){
+  if (S && S.instant) { requestAnimationFrame(() => { scroll.scrollTop = scroll.scrollHeight; }); return; }
+  cancelAnimationFrame(pwScrollRaf);
+  requestAnimationFrame(() => {
+    const from = scroll.scrollTop, t0 = performance.now(), dur = 560;
+    const step = (t) => {
+      const to = scroll.scrollHeight - scroll.clientHeight, k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+      scroll.scrollTop = from + (to - from) * e;
+      if (k < 1) pwScrollRaf = requestAnimationFrame(step);
+    };
+    pwScrollRaf = requestAnimationFrame(step);
+  });
+}
 function add(node){ chat.appendChild(node); toBottom(); return node; }
 function userSays(html){ add(el(`<div class="msg-user">${html}</div>`)); }
 function removeChips(){ chat.querySelectorAll('.chips,.hhrow').forEach(n => { n.classList.add('leaving'); setTimeout(() => n.remove(), 200); }); }
 
 /* Pathway replies: thinking, then its lines rise in one after another inside one group */
+function pwDelays(items){
+  /* time to "read" each line before the next appears, so replies feel considered */
+  const ds = []; let t = 0;
+  items.forEach((it, i) => {
+    ds.push(t);
+    const len = typeof it === 'string' ? it.replace(/<[^>]+>/g, '').length : 0;
+    t += typeof it === 'string' ? Math.min(1300, 560 + len * 8) : 420;
+  });
+  return ds;
+}
+function pwThink(items){
+  const chars = items.reduce((n, it) => n + (typeof it === 'string' ? it.replace(/<[^>]+>/g, '').length : 40), 0);
+  return 1100 + Math.min(600, chars * 3) + Math.random() * 300;
+}
 function pathwaySays(items, then, first){
   if (S.instant) {
     let group = null;
@@ -1776,6 +1867,7 @@ function pathwaySays(items, then, first){
   const think = add(el('<div class="thinking" role="status" aria-label="Pathway is thinking"><span></span><span></span><span></span></div>'));
   later(() => {
     think.remove();
+    const DS = pwDelays(items);
     let group = null;
     items.forEach((it, i) => later(() => {
       if (typeof it === 'string') {
@@ -1783,8 +1875,8 @@ function pathwaySays(items, then, first){
         group.appendChild(el(`<p>${it}</p>`)); toBottom();
       } else { group = null; add(it()); }
       if (i === items.length - 1) { S.busy = false; then && then(); }
-    }, i * 420));
-  }, 1000 + Math.random() * 300);
+    }, DS[i]));
+  }, pwThink(items));
 }
 
 function chipRow(options, whyKey, reask){
